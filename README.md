@@ -1,11 +1,12 @@
 simple minikube application setup composed of these pods :
--2 nginx reverse proxy & load balancer
--3 myapp instances
--1 postgresql master
+- 2 nginx reverse proxy & load balancer
+- 3 myapp instances
+- 1 postgresql master
 
 # Prerequisite
 
-install minikube
+install minikube https://kubernetes.io/docs/tasks/tools/install-minikube/
+
 
 # run & test
 
