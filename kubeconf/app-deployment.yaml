@@ -1,0 +1,33 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: myapp
+        tier: backend
+    spec:
+      containers:
+        - name: app
+          image: myapp:latest
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PGHOST
+              value: "postgres-master.default"
+            - name: PGUSER
+              value: "postgres"
+            - name: PGPASSWORD
+              value: "password"
+            - name: PGDATABASE
+              value: "myapp"
