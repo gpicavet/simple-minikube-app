@@ -1,7 +1,7 @@
 simple minikube application setup composed of these pods :
 -2 nginx reverse proxy & load balancer
 -3 myapp instances
--1 postgresql master
+-1 postgresql master with persistent volume on minikube host VM
 
 # Prerequisite
 
