@@ -14,12 +14,18 @@ spec:
         - name: app
           image: myapp:latest
           imagePullPolicy: IfNotPresent
+          readinessProbe:
+            httpGet:
+              path: /readiness
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
           livenessProbe:
             httpGet:
-              path: /healthz
+              path: /liveness
               port: 3000
-            initialDelaySeconds: 3
-            periodSeconds: 3
+            initialDelaySeconds: 30
+            periodSeconds: 10
           ports:
             - containerPort: 3000
           env:

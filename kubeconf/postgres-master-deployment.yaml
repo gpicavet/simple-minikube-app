@@ -12,6 +12,17 @@ spec:
       containers:
         - name: postgres-master
           image: postgres:9.6.2
+          args: ["-c","listen_addresses=0.0.0.0"]
+          readinessProbe:
+            exec:
+              command: ["psql", "-U", "postgres", "-c", "SELECT 1"]
+            initialDelaySeconds: 5
+            timeoutSeconds: 2
+          livenessProbe:
+            exec:
+              command: ["psql", "-U", "postgres", "-c", "SELECT 1"]
+            initialDelaySeconds: 45
+            timeoutSeconds: 2
           ports:
             - containerPort: 5432
           env:  # TODO: Use configmap/secrets
